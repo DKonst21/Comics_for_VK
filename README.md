@@ -44,5 +44,5 @@ python main.py
 #### save_wall_photo(access_token, group_id, server, photo, hash_photo)
 Сохраняет загруженное изображение в альбоме группы.
 
-###### post_comic_on_wall(access_token, group_id, message)
+#### post_comic_on_wall(access_token, group_id, message)
 Публикует скаченный комикс на стену сообщества в VK. Добавляет комментарий к этому комиксу, содержашийся в параметре message.
