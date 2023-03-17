@@ -29,19 +29,19 @@ python main.py
 ```
 Результатом его выполнения будет случайный комикс про Python, загруженный на стену ранее созданной группы.
 
-###### get_comics_photo()
+#### get_comics_photo()
 Получает случайный комикс с сайта https://xkcd.com
 
-###### get_response_api_vk(access_token)
+#### get_response_api_vk(access_token)
 Проверяет, что полученный ключ работает и у него есть необходимые права на вашу страницу.
 
-###### get_wall_upload_server(access_token, group_id)
+#### get_wall_upload_server(access_token, group_id)
 Получает адрес сервера для загрузки картинки. Параметы: токен и id группы.
 
-###### uploading_photos_to_server(access_token, group_id)
+#### uploading_photos_to_server(access_token, group_id)
 Загружает на сервер Вконтакте скачанный комикс.
 
-###### save_wall_photo(access_token, group_id, server, photo, hash_photo)
+#### save_wall_photo(access_token, group_id, server, photo, hash_photo)
 Сохраняет загруженное изображение в альбоме группы.
 
 ###### post_comic_on_wall(access_token, group_id, message)
