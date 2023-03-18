@@ -1,10 +1,10 @@
 import requests
 
 
-def download_comics(url, file_path):
+def download_comic(url, file_path):
 
     response = requests.get(url)
     response.raise_for_status()
 
     with open(file_path, 'wb') as file:
-        return file.write(response.content)
+        file.write(response.content)
