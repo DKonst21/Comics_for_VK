@@ -14,12 +14,10 @@ pip install -r requirements.txt
 
 ## Конфигурация проекта
 Для работы с проектом потребуется:
-- создать группу по ссылке https://vk.com/apps?act=manage ;
-- пройти процедуру для получения ключа доступа access_token пользователя по ссылке https://vk.com/dev/implicit_flow_user 
+- VK_GROUP_ID - id группы в VK, которую можно создать по ссылке https://vk.com/apps?act=manage Информация о id группы можно узнать здесь: https://regvk.com/id/
+- VK_ACCESS_TOKEN - access_token пользователя, который можно получить, пройдя по ссылке https://vk.com/dev/implicit_flow_user 
 
-После создания будет доступна информация id группы. Ее можно узнать здесь: https://regvk.com/id/
-
-### [download_comics.py](download_comics.py)
+### [download_comic.py](download_comic.py)
 Содержит общую функцию по скачиванию картинок по url-адресу.
 
 ### [main.py](main.py)
@@ -29,20 +27,20 @@ python main.py
 ```
 Результатом его выполнения будет случайный комикс про Python, загруженный на стену ранее созданной группы.
 
-#### get_comics_photo()
-Получает случайный комикс с сайта https://xkcd.com
+#### get_comics_photo(number_last_comic)
+Получает случайный комикс с сайта https://xkcd.com Параметр number_last_comic - номер последнего комикса на момент написания проекта. 
 
 #### get_response_api_vk(access_token)
 Проверяет, что полученный ключ работает и у него есть необходимые права на вашу страницу.
 
-#### get_wall_upload_server(access_token, group_id)
+#### get_address_for_download_photo(access_token, group_id)
 Получает адрес сервера для загрузки картинки. Параметы: токен и id группы.
 
 #### uploading_photos_to_server(access_token, group_id)
 Загружает на сервер Вконтакте скачанный комикс.
 
-#### save_wall_photo(access_token, group_id, server, photo, hash_photo)
-Сохраняет загруженное изображение в альбоме группы.
+#### save_wall_photo(access_token, group_id, uploading_photo)
+Сохраняет загруженное изображение в альбоме группы. Параметр uploading_photo - json с информацией о картинке.
 
-#### post_comic_on_wall(access_token, group_id, message)
-Публикует скаченный комикс на стену сообщества в VK. Добавляет комментарий к этому комиксу, содержашийся в параметре message.
+#### post_comic_on_wall(access_token, group_id, info_image, message)
+Публикует скаченный комикс на стену сообщества в VK. В параметре info_image передается словарь с информацией о картинке. В параметре message содержится комментарий к этому комиксу.
