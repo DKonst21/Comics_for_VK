@@ -71,6 +71,8 @@ def main():
         uploading_photo = upload_photos_to_server(access_token, group_id)
         save_photo = save_wall_photo(access_token, group_id, uploading_photo)
         post_comic_on_wall(access_token, group_id, save_photo, comic_info['alt'])
+    except ValueError:
+        print("Environment variables error!")
     finally:
         print("Comics uploaded to the wall of the VK group!")
     os.remove('image.png')
