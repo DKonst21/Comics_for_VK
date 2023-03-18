@@ -47,9 +47,9 @@ def save_wall_photo(access_token, group_id, uploading_photo):
     return response.json()['response'][0]
 
 
-def post_comic_on_wall(access_token, group_id, response_server, message):
-    owner_id = response_server['owner_id']
-    media_id = response_server['id']
+def post_comic_on_wall(access_token, group_id, info_image, message):
+    owner_id = info_image['owner_id']
+    media_id = info_image['id']
     attachments = f'photo{owner_id}_{media_id}'
     payload = {"owner_id": f"{-group_id}", "group_id": f"{group_id}", "from_group": True,
                "attachments": f"{attachments}", "message": f"{message}", "access_token": f"{access_token}",
