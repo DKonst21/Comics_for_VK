@@ -30,17 +30,20 @@ python main.py
 #### get_comics_photo(number_last_comic)
 Получает случайный комикс с сайта https://xkcd.com Параметр number_last_comic - номер последнего комикса на момент написания проекта. 
 
-#### get_response_api_vk(access_token)
-Проверяет, что полученный ключ работает и у него есть необходимые права на вашу страницу.
+#### get_address_for_upload_photo(access_token, group_id, version)
+Получает адрес сервера для загрузки картинки. Параметы: токен и id группы, версия API VK.
 
-#### get_address_for_download_photo(access_token, group_id)
-Получает адрес сервера для загрузки картинки. Параметы: токен и id группы.
-
-#### uploading_photos_to_server(access_token, group_id)
+#### upload_photos_to_server(access_token, group_id, version)
 Загружает на сервер Вконтакте скачанный комикс.
 
-#### save_wall_photo(access_token, group_id, uploading_photo)
-Сохраняет загруженное изображение в альбоме группы. Параметр uploading_photo - json с информацией о картинке.
+#### save_wall_photo(access_token, group_id, version, server, photo, photo_hash)
+Сохраняет загруженное изображение в альбоме группы. Параметры: 
+- server - номер сервера, на который загружена картинка; 
+- photo - словарь с данными о картинке;
+- photo_hash - строка с hash номером картинки.
 
-#### post_comic_on_wall(access_token, group_id, info_image, message)
-Публикует скаченный комикс на стену сообщества в VK. В параметре info_image передается словарь с информацией о картинке. В параметре message содержится комментарий к этому комиксу.
+#### post_comic_on_wall(access_token, group_id, version, owner_id, media_id, message)
+Публикует скаченный комикс на стену сообщества в VK. Параметры:
+- owner_id — идентификатор владельца медиа-приложения; 
+- media_id — идентификатор медиа-приложения; 
+- message - содержится комментарий к этому комиксу.
