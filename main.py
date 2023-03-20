@@ -65,7 +65,6 @@ def main():
         save_photo = save_wall_photo(access_token, group_id, version, server, photo, photo_hash)
         owner_id = save_photo['owner_id']
         media_id = save_photo['id']
-        print(owner_id, media_id)
         post_comic_on_wall(access_token, group_id, version, owner_id, media_id, comic_info['alt'])
     except ValueError:
         print("Environment variables error!")
