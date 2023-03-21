@@ -13,7 +13,7 @@ def get_comic_photo(number_last_comic):
 
 
 def get_address_for_upload_photo(access_token, group_id, version):
-    payload = {"group_id": {group_id}, "access_token": {access_token}, "v": {version}}
+    payload = {"group_id": group_id, "access_token": access_token, "v": version}
     response = requests.get('https://api.vk.com/method/photos.getWallUploadServer', params=payload)
     response.raise_for_status()
     return response.json()['response']['upload_url']
@@ -26,14 +26,14 @@ def upload_photos_to_server(access_token, group_id, version):
             'photo': file,
         }
         response = requests.post(url, files=files)
-        response.raise_for_status()
+    response.raise_for_status()
     uploading_photo = response.json()
     return uploading_photo
 
 
 def save_wall_photo(access_token, group_id, version, server, photo, photo_hash):
-    payload = {"group_id": {group_id}, "photo": {photo}, "server": {server},
-               "hash": {photo_hash}, "access_token": {access_token}, "v": {version}}
+    payload = {"group_id": group_id, "photo": photo, "server": server, "hash": photo_hash,
+               "access_token": access_token, "v": version}
     response = requests.post('https://api.vk.com/method/photos.saveWallPhoto', params=payload)
     response.raise_for_status()
     return response.json()['response'][0]
@@ -41,9 +41,8 @@ def save_wall_photo(access_token, group_id, version, server, photo, photo_hash):
 
 def post_comic_on_wall(access_token, group_id, version, owner_id, media_id, message):
     attachments = f'photo{owner_id}_{media_id}'
-    payload = {"owner_id": {-group_id}, "group_id": {group_id}, "from_group": True,
-               "attachments": {attachments}, "message": {message}, "access_token": {access_token},
-               "v": {version}}
+    payload = {"owner_id": -group_id, "group_id": group_id, "from_group": True, "attachments": attachments,
+               "message": message, "access_token": access_token, "v": {version}}
     response = requests.post('https://api.vk.com/method/wall.post', params=payload)
     response.raise_for_status()
     return response.json()
